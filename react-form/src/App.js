@@ -1,13 +1,28 @@
+import {useRef, useState} from "react"
+
 function App() {
+  const nameInput = useRef();
+  const checkboxInput = useRef();
+
+  const [user, setUser] = useState({
+    name:"",
+    email:"",
+    phoneNumber:"",
+    phoneType:"",
+    staff:"",
+    bio:"",
+    emailNotification:true
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target)
+    console.log(user)
   }
   return (
     <>
       <h1>Hello from App</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Name"></input>
+        <input type="text" placeholder="Name" ref={nameInput}></input>
         <input type="text" placeholder="Email"></input>
         <input type="tel" placeholder="Phone number"></input>
 
@@ -25,11 +40,11 @@ function App() {
           <input type="radio" name="staff" id="Student" />
         </label>
 
-        <textarea name="Bio" id="" cols="30" rows="10" value="Bio">
+        <textarea name="Bio" id="" cols="30" rows="10" placeholder="Bio">
         </textarea>
 
         <label htmlFor="notifications">Sign up for Email notifications
-          <input type="checkbox" name="" id="" />
+          <input type="checkbox" name="" value={user.emailNotification} id="" ref={checkboxInput}/>
         </label>
 
         <button>Submit</button>
