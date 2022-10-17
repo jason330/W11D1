@@ -23,20 +23,48 @@ function App() {
     }
   }
 
+  const validates = () =>{
+    let errors = [];
+    if (user.name.length === 0 ){
+      errors.push("Name cannot be blank")
+    }
+    if (user.email.length === 0){
+      errors.push("Email cannot be blank")
+    }
+    if (user.email.length === 0){
+      errors.push("Email cannot be blank")
+    }
+    if (user.phoneNumber.length !== 9){
+      errors.push("phone number must be nine digits")
+    }
+    if (!user.phoneType && user.phoneNumber){
+      errors.push("Please select a phone type")
+    }
+    if (user.bio.length > 280){
+      errors.push("Bio is too long")
+    }
+    return errors;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let errors = validates();
+
     if (errors.length) {
       setErrors(errors)
+    }else{
+      console.log(user)
     }
-    console.log(user)
+    
   }
+
+
   return (
     <>
       <h1>Hello from App</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Name" onChange={handleChange("name")}></input>
-        <input type="text" placeholder="Email" onChange={handleChange("email")}></input>
+        <input type="email" placeholder="Email" onChange={handleChange("email")}></input>
         <input type="tel" placeholder="Phone number" onChange={handleChange("phoneNumber")}></input>
 
         <select onChange={handleChange("phoneType")}>
