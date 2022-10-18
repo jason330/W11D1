@@ -10,7 +10,7 @@ function ProductView({ products }) {
   const [sideOpen, setSideOpen] = useState(true);
 
   const [selectedProduct, setSelectedProduct] = useState()
-  
+
   return (
     <div className="product-view">
       <div className="product-main-area">
@@ -20,7 +20,7 @@ function ProductView({ products }) {
             <ProductListItem
               key={item.id}
               product={item}
-              onClick={() => console.log('SELECT PRODUCT', item)}
+              onClick={() => setSelectedProduct(item)}
             />
           )}
         </div>
@@ -32,7 +32,7 @@ function ProductView({ products }) {
             {sideOpen ? '>' : '<'}
           </div>
         </div>
-        <ProductDetails visible={sideOpen} />
+        <ProductDetails product={selectedProduct} visible={sideOpen} />
       </div>
     </div>
   );
