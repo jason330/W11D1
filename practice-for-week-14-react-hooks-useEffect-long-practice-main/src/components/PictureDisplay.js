@@ -26,11 +26,12 @@ const feathers = [
 
 
 function PictureDisplay ({ size, featherCount, featherColors }) {
-  
+
   const [sizeClass, setSizeClass] = useState('medium');
+
   useEffect(() => {
     console.log('PictureDisplay', featherCount, featherColors);
-}, [featherCount, featherColors]);
+  }, [featherCount, featherColors]);
 
   useEffect( () => {
     let cname = '';
